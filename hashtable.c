@@ -12,7 +12,7 @@
 #include "hashtable.h"
 
 
-/*********************************************************** 
+/******************************************************************************
  * -- hash --
  *
  * This function is responsible for hashing key into the
@@ -26,7 +26,7 @@
  * Returns -1 on failure
  *          otherwise returns index
  *
- ***********************************************************
+ ******************************************************************************
  */
 
 unsigned int hash(keyType key) // IN
@@ -45,7 +45,8 @@ unsigned int hash(keyType key) // IN
     return hash % PRIME;
 }
 
-/*********************************************************** 
+
+/****************************************************************************** 
  * -- allocate --
  *
  * This function is responsible for allocating space
@@ -58,7 +59,7 @@ unsigned int hash(keyType key) // IN
  * Returns -1 on failure
  *          0 on success
  *
- ***********************************************************
+ ******************************************************************************
  */
 
 int allocate(hashtable **map,  // IN/OUT
@@ -82,7 +83,7 @@ int allocate(hashtable **map,  // IN/OUT
 }
 
 
-/*********************************************************** 
+/****************************************************************************** 
  * -- insert --
  *
  * This function is responsible for inserting a key
@@ -96,7 +97,7 @@ int allocate(hashtable **map,  // IN/OUT
  * Returns -1 on failure
  *          0 on success
  *
- ***********************************************************
+ ******************************************************************************
  */
 
 int insert(hashtable *map,  // IN/OUT
@@ -138,7 +139,7 @@ int insert(hashtable *map,  // IN/OUT
 }
 
 
-/*********************************************************** 
+/****************************************************************************** 
  * -- get --
  *
  * This function is responsible for getting the value that
@@ -152,12 +153,12 @@ int insert(hashtable *map,  // IN/OUT
  * Returns -1 on failure
  *          0 on success
  *
- ***********************************************************
+ ******************************************************************************
  */
 
 int get(hashtable *map,  // IN
         keyType key,     // IN
-        valType *val)     // IN/OUT
+        valType *val)    // IN/OUT
 {
     int index = hash(key);
     ht_elt *tmp = map->table[index];
@@ -173,7 +174,7 @@ int get(hashtable *map,  // IN
 }
 
 
-/*********************************************************** 
+/****************************************************************************** 
  * -- erase --
  *
  * This function is responsible for deleting a key
@@ -186,7 +187,7 @@ int get(hashtable *map,  // IN
  * Returns -1 on failure
  *          0 on success
  *
- ***********************************************************
+ ******************************************************************************
  */
 
 int erase(hashtable *map, // IN/OUT
@@ -222,7 +223,7 @@ int erase(hashtable *map, // IN/OUT
 }
 
 
-/*********************************************************** 
+/****************************************************************************** 
  * -- deallocate --
  *
  * This function is responsible for deallocating all memory
@@ -234,7 +235,7 @@ int erase(hashtable *map, // IN/OUT
  * Returns -1 on failure
  *          0 on success
  *
- ***********************************************************
+ ******************************************************************************
  */
 
 int deallocate(hashtable **map) // IN
