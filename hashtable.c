@@ -106,6 +106,20 @@ int insert(hashtable *map,  // IN/OUT
     int index = hash(key);
 
     ht_elt *tmp = map->table[index];
+
+    /*
+     * Check if key is already in the hashtable.
+     * If it is, replace the value.
+     */
+    while (tmp != NULL) {
+        if (strcmp(tmp->key, key) == 0) {
+            tmp->val = val;
+            return 0;
+        }
+        tmp = tmp->next;
+    }
+
+    tmp = map->table[index];
     ht_elt *new_node = malloc(sizeof(ht_elt));
      
     if (new_node == NULL) {
