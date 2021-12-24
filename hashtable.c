@@ -132,6 +132,7 @@ int insert(hashtable *map,  // IN/OUT
     new_node->next = tmp;
 
     map->table[index] = new_node;
+    map->num_elt += 1;
 
     return 0;
 }
@@ -189,7 +190,7 @@ int get(hashtable *map,  // IN
  */
 
 int erase(hashtable *map, // IN/OUT
-           keyType key)    // IN
+          keyType key)    // IN
 {
     int index = hash(key);
     ht_elt *tmp = map->table[index];
@@ -199,6 +200,7 @@ int erase(hashtable *map, // IN/OUT
         return -1;
     }
 
+    map->num_elt -= 1;
     ht_elt *prev = tmp;
     tmp = tmp->next;
     while (tmp != NULL) {
@@ -206,6 +208,7 @@ int erase(hashtable *map, // IN/OUT
         if (strcmp(tmp->key, key) == 0) {
             prev->next = tmp->next;
             free(tmp);
+            tmp = NULL;
             return 0;
         }
 
@@ -234,8 +237,14 @@ int erase(hashtable *map, // IN/OUT
  ***********************************************************
  */
 
-int deallocate(hashtable *map) // IN
+int deallocate(hashtable **map) // IN
 {
-    (void) map;
+    for (int i = 0; i < (*map)->capacity; i++) {
+        free((*map)->table[i]);
+    }
+
+    free((*map)->table);
+    free(*map);
+    *map = NULL;
     return 0;
 }

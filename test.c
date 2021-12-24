@@ -50,5 +50,11 @@ int main(void) {
     get(ht, "key3", &val1);
     printf("Test 6...");
     assert(val1 == -1);
-    printf("Passed!");
+    printf("Passed!\n");
+
+    // Test 7
+    deallocate(&ht);
+    printf("Test 7...");
+    assert(ht == NULL);
+    printf("Passed!\n");
 }

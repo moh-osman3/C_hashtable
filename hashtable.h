@@ -32,6 +32,6 @@ int get(hashtable *map, keyType key, valType *val);
 
 int erase(hashtable *map, keyType key);
 
-int deallocate(hashtable *map);
+int deallocate(hashtable **map);
 
 #endif
