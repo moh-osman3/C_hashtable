@@ -44,5 +44,11 @@ int main(void) {
     printf("Test 5...");
     assert(val1 == 900);
     printf("Passed!\n");
-
+    
+    // Test 6
+    erase(ht, "key3");
+    get(ht, "key3", &val1);
+    printf("Test 6...");
+    assert(val1 == -1);
+    printf("Passed!");
 }

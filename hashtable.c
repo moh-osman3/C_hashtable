@@ -167,12 +167,13 @@ int get(hashtable *map,  // IN
             return 0; 
         }
     }
+    *val = -1;
     return -1;
 }
 
 
 /*********************************************************** 
- * -- delete --
+ * -- erase --
  *
  * This function is responsible for deleting a key
  * from the hashtable
@@ -187,11 +188,33 @@ int get(hashtable *map,  // IN
  ***********************************************************
  */
 
-int delete(hashtable *map, // IN/OUT
-          keyType key)    // IN
+int erase(hashtable *map, // IN/OUT
+           keyType key)    // IN
 {
-    (void) map;
-    (void) key;
+    int index = hash(key);
+    ht_elt *tmp = map->table[index];
+
+    if (tmp == NULL) {
+        fprintf(stdout, "Unable to find key to delete\n");
+        return -1;
+    }
+
+    ht_elt *prev = tmp;
+    tmp = tmp->next;
+    while (tmp != NULL) {
+        
+        if (strcmp(tmp->key, key) == 0) {
+            prev->next = tmp->next;
+            free(tmp);
+            return 0;
+        }
+
+        tmp = tmp->next;
+        prev = prev->next;
+    }
+
+    free(prev);
+    map->table[index] = NULL;
     return 0;
 }
 
