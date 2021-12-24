@@ -29,7 +29,8 @@
  ***********************************************************
  */
 
-unsigned int hash(keyType key) {
+unsigned int hash(keyType key) // IN
+{
     int length = strlen(key);
     size_t i = 0;
     unsigned int hash = 0;
@@ -172,7 +173,7 @@ int get(hashtable *map,  // IN
  ***********************************************************
  */
 
-int erase(hashtable *map, // IN/OUT
+int delete(hashtable *map, // IN/OUT
           keyType key)    // IN
 {
     (void) map;
